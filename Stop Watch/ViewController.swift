@@ -24,16 +24,25 @@ class ViewController: UIViewController {
     func start() {
         startTime = NSDate()
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
         }
     }
     
     func updateTimer(myTimer: NSTimer) {
-        //timeLabel.text = myTimer.timeInterval.description
         currentTime = NSDate()
         if startTime != nil {
             var duration = currentTime?.timeIntervalSinceDate(startTime!)
-            timeLabel.text = duration?.description
+            
+            var dateFormatter = NSDateFormatter()
+            //Format the time so it looks nice
+            dateFormatter.dateFormat = "HH:mm:ss.SS"
+            //Set the timezone to UTC so that the time is always 0 (if not
+            // it will do midnight - our time zone)
+            dateFormatter.timeZone = NSTimeZone(name: "UTC")
+            
+            var date = NSDate(timeIntervalSince1970: duration!)
+            timeLabel.text = dateFormatter.stringFromDate(date)
+            
         }
     }
     
