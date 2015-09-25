@@ -29,12 +29,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func StartButtonPressed(sender: AnyObject) {
+        start()
     }
 
     @IBAction func StopButtonPressed(sender: AnyObject) {
+        stop()
     }
     
     @IBAction func ResetButtonPressed(sender: AnyObject) {
+        reset()
     }
 }
 
