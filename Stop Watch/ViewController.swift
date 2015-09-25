@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var timer: NSTimer?
     var startTime: NSDate?
     var currentTime: NSDate?
+    var stopTime: NSDate?
 
     @IBOutlet weak var timeLabel: UILabel!
     override func viewDidLoad() {
@@ -22,8 +23,9 @@ class ViewController: UIViewController {
     
     func start() {
         startTime = NSDate()
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
+        if timer == nil {
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
+        }
     }
     
     func updateTimer(myTimer: NSTimer) {
@@ -36,7 +38,8 @@ class ViewController: UIViewController {
     }
     
     func stop() {
-        
+        stopTime = NSDate()
+        timer?.invalidate()
     }
     
     func reset() {
