@@ -25,7 +25,18 @@ class ViewController: UIViewController {
     func start() {
         if timer == nil {
             timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
-            startTime = NSDate()
+            if(stopTime != nil) {
+                //calculate the duration elapsed from start to stop, subtract from
+                //new start time, if not pic a new start time
+                if(startTime != nil) {
+                    var duration = stopTime?.timeIntervalSinceDate(startTime!)
+                    startTime = NSDate(timeInterval: -duration!, sinceDate: NSDate())
+                } else {
+                    startTime = NSDate()
+                }
+            } else {
+                startTime = NSDate()
+            }
         }
     }
     
