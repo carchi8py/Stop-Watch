@@ -56,7 +56,13 @@ class ViewController: UIViewController {
     }
     
     func reset() {
+        timer?.invalidate()
+        timer = nil
+        startTime = nil
+        currentTime = nil
+        stopTime = nil
         
+        timeLabel.text = dateStringFromTimeInterval(0)
     }
 
     @IBAction func StartButtonPressed(sender: AnyObject) {
