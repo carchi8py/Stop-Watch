@@ -40,6 +40,7 @@ class ViewController: UIViewController {
     func stop() {
         stopTime = NSDate()
         timer?.invalidate()
+        timer = nil
     }
     
     func reset() {
