@@ -23,9 +23,9 @@ class ViewController: UIViewController {
     }
     
     func start() {
-        startTime = NSDate()
         if timer == nil {
             timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
+            startTime = NSDate()
         }
     }
     
