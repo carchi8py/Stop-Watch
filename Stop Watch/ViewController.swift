@@ -32,18 +32,21 @@ class ViewController: UIViewController {
         currentTime = NSDate()
         if startTime != nil {
             var duration = currentTime?.timeIntervalSinceDate(startTime!)
-            
-            var dateFormatter = NSDateFormatter()
-            //Format the time so it looks nice
-            dateFormatter.dateFormat = "HH:mm:ss.SS"
-            //Set the timezone to UTC so that the time is always 0 (if not
-            // it will do midnight - our time zone)
-            dateFormatter.timeZone = NSTimeZone(name: "UTC")
-            
-            var date = NSDate(timeIntervalSince1970: duration!)
-            timeLabel.text = dateFormatter.stringFromDate(date)
-            
+        
+            timeLabel.text = dateStringFromTimeInterval(duration!)
         }
+    }
+    
+    func dateStringFromTimeInterval(timeInterval: NSTimeInterval) -> String {
+        var dateFormatter = NSDateFormatter()
+        //Format the time so it looks nice
+        dateFormatter.dateFormat = "HH:mm:ss.SS"
+        //Set the timezone to UTC so that the time is always 0 (if not
+        // it will do midnight - our time zone)
+        dateFormatter.timeZone = NSTimeZone(name: "UTC")
+        
+        var date = NSDate(timeIntervalSince1970: timeInterval)
+        return dateFormatter.stringFromDate(date)
     }
     
     func stop() {
